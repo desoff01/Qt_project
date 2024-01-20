@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>images/b2b.png</file>
+        <file>images/free-icon-eye-158746.png</file>
+        <file>images/free-icon-hide-2767146.png</file>
+    </qresource>
+</RCC>

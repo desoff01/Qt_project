@@ -2,9 +2,9 @@
 It's my course project
 ## Installation
 
-> git clone https://github.com/desoff01/Qt_project.git
-> cd Qt_project
-> mkdir build
-> cd build
-> qmake ../Kursach.pro
-> make -j12
+1. git clone https://github.com/desoff01/Qt_project.git
+2. cd Qt_project
+3. mkdir build
+4. cd build
+5. qmake ../Kursach.pro
+6. make -j12

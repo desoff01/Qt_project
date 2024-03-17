@@ -26,10 +26,10 @@ DialogEditTables::DialogEditTables(QWidget *parent) :
         ui->label_4->show();
         ui->label_5->hide();
 
-        ui->label->setText("Компания:");
-        ui->label_2->setText("Фамилия:");
-        ui->label_3->setText("Имя:");
-        ui->label_4->setText("Отчество:");
+        ui->label->setText(tr("Компания:"));
+        ui->label_2->setText(tr("Фамилия:"));
+        ui->label_3->setText(tr("Имя:"));
+        ui->label_4->setText(tr("Отчество:"));
         break;
 
     case SelectTables::CONTACTS:
@@ -43,8 +43,8 @@ DialogEditTables::DialogEditTables(QWidget *parent) :
         ui->label_4->hide();
         ui->label_5->hide();
 
-        ui->label->setText("Номер телефона:");
-        ui->label_2->setText("Почта:");
+        ui->label->setText(tr("Номер телефона:"));
+        ui->label_2->setText(tr("Почта:"));
         break;
 
     case SelectTables::INFO:
@@ -58,8 +58,8 @@ DialogEditTables::DialogEditTables(QWidget *parent) :
         ui->label_4->hide();
         ui->label_5->hide();
 
-        ui->label->setText("Номер телефона:");
-        ui->label_2->setText("Компания:");
+        ui->label->setText(tr("Номер телефона:"));
+        ui->label_2->setText(tr("Компания:"));
         break;
 
     case SelectTables::SERVICES:
@@ -73,7 +73,7 @@ DialogEditTables::DialogEditTables(QWidget *parent) :
         ui->label_4->hide();
         ui->label_5->hide();
 
-        ui->label->setText("Услуга:");
+        ui->label->setText(tr("Услуга:"));
         break;
 
     case SelectTables::CONTRACTS:
@@ -87,11 +87,11 @@ DialogEditTables::DialogEditTables(QWidget *parent) :
         ui->label_4->show();
         ui->label_5->show();
 
-        ui->label->setText("Компания:");
-        ui->label_2->setText("Номер телефона:");
-        ui->label_3->setText("Дата заключения:");
-        ui->label_4->setText("Дедлайн:");
-        ui->label_5->setText("Услуга:");
+        ui->label->setText(tr("Компания:"));
+        ui->label_2->setText(tr("Номер телефона:"));
+        ui->label_3->setText(tr("Дата заключения:"));
+        ui->label_4->setText(tr("Дедлайн:"));
+        ui->label_5->setText(tr("Услуга:"));
         break;
     }
 }
@@ -203,10 +203,10 @@ void DialogEditTables::pushButtonEdit_clicked() {
     }
 
     if (success) {
-        ui->labelStatus->setText("Запись изменена");
+        ui->labelStatus->setText(tr("Запись изменена"));
         ui->labelStatus->setStyleSheet("color: #63c71c");
     } else {
-        ui->labelStatus->setText("Запись не изменена");
+        ui->labelStatus->setText(tr("Запись не изменена"));
         ui->labelStatus->setStyleSheet("color: #c71c1c");
     }
 }

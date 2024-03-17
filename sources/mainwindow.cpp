@@ -39,38 +39,19 @@ void MainWindow::pushButtonSignIn_clicked() {
     /// getting password hash and username hash
     ///
 
-    std::string username = ui->lineEditLogin->text().toStdString();
-    for (size_t i {0}; i < username.length(); i++) {
-        username[i] ^= xorArr[i % 3] + 1;
-    }
-    std::string password = ui->lineEditPasswd->text().toStdString();
-    for (size_t i {0}; i < password.length(); i++) {
-        password[i] ^= xorArr[i % 3] + 3;
-    }
-
-    QCryptographicHash hash(QCryptographicHash::Sha1);
-    QByteArray byteArr(username.c_str());
-    hash.addData(byteArr);
-    hash.addData("th1s-i5_S01t");
-    QByteArray userString {hash.result()};
-
-    hash.reset();
-
-    byteArr = password.c_str();
-    hash.addData(byteArr);
-    hash.addData("PT_h4ckDa9s");
-    QByteArray passString {hash.result()};
+    QByteArray loginString {hash.getLoginHash(ui->lineEditLogin->text().toStdString())};
+    QByteArray passString {hash.getPasswordHash(ui->lineEditPasswd->text().toStdString())};
 
     // connection settings changed
-    auth.setHostName(HostName);
+    auth.setHostName(server);
     auth.setPort(3306);
-    auth.setUserName(UserName);
-    auth.setPassword(Password);
-    auth.setDatabaseName(DatabaseName);
+    auth.setUserName(username);
+    auth.setPassword(password);
+    auth.setDatabaseName(database);
     if(auth.open()) {
         QSqlQuery q(auth);
         q.prepare("SELECT * FROM Users WHERE username = :username AND password = :password;");
-        q.bindValue(":username", userString.toHex());
+        q.bindValue(":username", loginString.toHex());
         q.bindValue(":password", passString.toHex());
         q.exec();
 
@@ -80,10 +61,10 @@ void MainWindow::pushButtonSignIn_clicked() {
             out->show();
         }
         else {
-            QMessageBox::information(this, "Authentication", "Incorrect Username or password");
+            ui->labelStatus->setText("Incorrect Username or password");
         }
     } else {
-        QMessageBox::critical(this, "Cannot connect to database", "Check your internet connection");
+        ui->labelStatus->setText("Cannot connect to database");
     }
 }
 

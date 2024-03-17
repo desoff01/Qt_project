@@ -5,6 +5,7 @@
 #include <QSqlQuery>
 #include <QIcon>
 #include <array>
+#include "headers/hash.h"
 
 ///
 /// login window class

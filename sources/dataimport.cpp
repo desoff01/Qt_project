@@ -14,12 +14,11 @@ DataImport::DataImport(QWidget *parent) :
     setWindowFlags(Qt::FramelessWindowHint);
 
     cols = 4;
-    ui->labelStatus->hide();
     ui->pushButtonAdd->hide();
 
     connect(ui->pushButtonOpenFile, &QPushButton::clicked, this, &DataImport::pushButtonOpenFile_clicked);
     connect(ui->pushButtonImport, &QPushButton::clicked, this, &DataImport::pushButtonImport_clicked);
-    connect(ui->comboBoxSelectTable, &QComboBox::editTextChanged, this, &DataImport::ComboBoxSelectTable_changed);
+    connect(ui->comboBoxSelectTable, &QComboBox::currentTextChanged, this, &DataImport::ComboBoxSelectTable_changed);
     connect(ui->pushButtonAdd, &QPushButton::clicked, this, &DataImport::pushButtonAdd_clicked);
     connect(ui->pushButtonMinimize, &QPushButton::clicked, this, &DataImport::showMinimized);
     connect(ui->pushButtonClose, &QPushButton::clicked, this, &DataImport::close);
@@ -67,7 +66,7 @@ void DataImport::pushButtonImport_clicked() {
 
         file.close();
     } else {
-        QMessageBox::warning(this, "File not found", "No such file");
+        ui->labelStatus->setText(tr("Файл не найден")); // File not found
     }
 
     ui->pushButtonAdd->show();
@@ -88,12 +87,13 @@ void DataImport::pushButtonAdd_clicked() {
         QMessageBox::warning(this, "Wrong number of columns",
                              "You have selected more or less "
                              "columns required for the table you selected");
+
         return;
     }
 
     QStringList sql {};
     auto size {strList.size() - cols};
-    for (int i {0}; i <= size; i += cols) {
+    for (int i {0}; i <= size; i += cols+1) {
         for (int j {0}; j < ui->listWidget->count(); j++) {
 
             // import data only from checked columns
@@ -102,13 +102,14 @@ void DataImport::pushButtonAdd_clicked() {
             }
         }
         if (!importTable(sql)) {
-            ui->labelStatus->setText("Data not imported");
-            break;
+            ui->labelStatus->setText(tr("Данные не импортированы"));
+            ui->labelStatus->setStyleSheet("color: #c71c1c");
+            return;
         }
         sql.clear();
     }
-    ui->labelStatus->show();
-    ui->labelStatus->setText("Data imported");
+    ui->labelStatus->setText(tr("Данные импортированы"));
+    ui->labelStatus->setStyleSheet("color: #63c71c");
 }
 
 ///

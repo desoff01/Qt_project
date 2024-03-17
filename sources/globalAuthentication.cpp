@@ -1,5 +1,7 @@
 #include "headers/globalAuthentication.h"
 
-QSqlDatabase auth = QSqlDatabase::addDatabase("QMYSQL");
+QSqlDatabase auth {QSqlDatabase::addDatabase("QMYSQL")};
 
 SelectTables st;
+
+Hash hash;

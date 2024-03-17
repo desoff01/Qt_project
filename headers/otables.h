@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "showtable.h"
+#include "headers/pdfviewer.h"
+//#include <memory>
 
 ///
 /// main window class
@@ -56,6 +58,9 @@ private:
     QAction* menuSettings;
     QAction* menuOpenPDF;
     QAction* menuExit;
+    QSqlQueryModel* model;
+
+    std::unique_ptr<PDFViewer> pdfViewer {std::make_unique<PDFViewer>()};
 
     void updateTable() const;
 };

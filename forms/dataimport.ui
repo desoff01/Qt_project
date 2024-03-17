@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
-    <height>280</height>
+    <width>700</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="contextMenuPolicy">
@@ -22,33 +22,39 @@
   <widget class="QLabel" name="labelSelectTable">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>20</x>
      <y>50</y>
-     <width>101</width>
+     <width>181</width>
      <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>Select table:</string>
+    <string>Выберите таблицу:</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="labelOpenFile">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>20</x>
      <y>100</y>
-     <width>111</width>
+     <width>181</width>
      <height>24</height>
     </rect>
    </property>
    <property name="text">
-    <string>Select csv file:</string>
+    <string>Выберите csv файл:</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEditOpenFile">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>210</x>
      <y>100</y>
      <width>201</width>
      <height>31</height>
@@ -64,7 +70,7 @@ background-color: transparent;</string>
   <widget class="QComboBox" name="comboBoxSelectTable">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>210</x>
      <y>50</y>
      <width>201</width>
      <height>32</height>
@@ -105,9 +111,9 @@ background-color: #fcfcfc;</string>
   <widget class="QPushButton" name="pushButtonOpenFile">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>150</y>
-     <width>81</width>
+     <x>210</x>
+     <y>160</y>
+     <width>91</width>
      <height>32</height>
     </rect>
    </property>
@@ -119,15 +125,15 @@ color: #fcfcfc;
 text-align: center;</string>
    </property>
    <property name="text">
-    <string>Open...</string>
+    <string>Открыть...</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButtonImport">
    <property name="geometry">
     <rect>
-     <x>240</x>
-     <y>150</y>
-     <width>111</width>
+     <x>310</x>
+     <y>160</y>
+     <width>101</width>
      <height>32</height>
     </rect>
    </property>
@@ -139,13 +145,13 @@ color: #fcfcfc;
 text-align: center;</string>
    </property>
    <property name="text">
-    <string>Import</string>
+    <string>Импорт</string>
    </property>
   </widget>
   <widget class="QListWidget" name="listWidget">
    <property name="geometry">
     <rect>
-     <x>360</x>
+     <x>420</x>
      <y>30</y>
      <width>256</width>
      <height>192</height>
@@ -161,8 +167,8 @@ background-color: transparent;</string>
   <widget class="QPushButton" name="pushButtonAdd">
    <property name="geometry">
     <rect>
-     <x>491</x>
-     <y>240</y>
+     <x>551</x>
+     <y>250</y>
      <width>121</width>
      <height>32</height>
     </rect>
@@ -175,26 +181,26 @@ color: #fcfcfc;
 text-align: center;</string>
    </property>
    <property name="text">
-    <string>Add</string>
+    <string>Добавить</string>
    </property>
   </widget>
   <widget class="QLabel" name="labelStatus">
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>240</y>
-     <width>121</width>
-     <height>24</height>
+     <y>250</y>
+     <width>311</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>Data Imported</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButtonClose">
    <property name="geometry">
     <rect>
-     <x>610</x>
+     <x>670</x>
      <y>0</y>
      <width>30</width>
      <height>30</height>
@@ -212,7 +218,7 @@ color:  #1a1a1a;</string>
   <widget class="QPushButton" name="pushButtonMinimize">
    <property name="geometry">
     <rect>
-     <x>580</x>
+     <x>640</x>
      <y>-3</y>
      <width>30</width>
      <height>30</height>

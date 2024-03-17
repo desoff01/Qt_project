@@ -8,6 +8,7 @@
 #include "headers/mainwindow.h"
 #include "headers/dataimport.h"
 #include "headers/globalAuthentication.h"
+#include "headers/settings.h"
 #include <QFileDialog>
 #include <QTextStream>
 
@@ -21,11 +22,14 @@ OTables::OTables(QWidget *parent) :
 
     setWindowIcon(QIcon(":/img/images/b2b.png"));
 
-    showTables = new ShowTables(ui->tableView);
+    model = new QSqlQueryModel();
+    ui->tableView->setModel(model);
 
-    menuSettings = new QAction("Настройки...", this);
-    menuOpenPDF = new QAction("Открыть PDF...", this);
-    menuExit = new QAction("Выйти", this);
+    showTables = new ShowTables(model, ui->tableView);
+
+    menuSettings = new QAction(tr("Настройки..."), this);
+    menuOpenPDF = new QAction(tr("Открыть PDF..."), this);
+    menuExit = new QAction(tr("Выйти"), this);
     ui->menubar->addAction(menuSettings);
     ui->menubar->addAction(menuOpenPDF);
     ui->menubar->addMenu("|")->setEnabled(false);
@@ -115,7 +119,7 @@ void OTables::ImportTable_triggered() {
 ///
 
 void OTables::ExportTable_triggered() {
-    QString filters("CSV files (*.csv);;All files (*.*)");
+    QString filters("CSV files (*.csv)");
     QString defaultFilter("CSV files (*.csv)");
     QString fileName {QFileDialog::getSaveFileName(0, "Save file",
             QCoreApplication::applicationDirPath(), filters, &defaultFilter)};
@@ -151,15 +155,26 @@ void OTables::ExportTable_triggered() {
     }
 }
 
-// not implemented
+///
+/// Open settings window
+///
+
 void OTables::menuSettings_triggered() {
-    QMessageBox::information(this, "Header", "Menu Settings pressed");
+    auto stg (std::make_unique<settings>());
+    stg->exec();
 }
 
-// not implemented
+///
+/// Open PDF viewer
+///
+
 void OTables::menuOpenPDF_triggered() {
-    QMessageBox::information(this, "Header", "Menu Open PDF pressed");
+    pdfViewer->show();
 }
+
+///
+/// Exit from account
+///
 
 void OTables::menuExit_triggered() {
     MainWindow *wnd {new MainWindow};
@@ -173,14 +188,16 @@ void OTables::menuExit_triggered() {
 ///
 
 void OTables::lineEditSearch_textChanged(const QString &arg1) {
-    if (arg1 != nullptr) {
-        for (int i {0}; i <= ui->tableView->model()->columnCount(); i++) {
-            for (int j {0}; j <= ui->tableView->model()->rowCount(); j++) {
-                QModelIndex ind {ui->tableView->model()->index(j, i)};
+    if (ui->tableView->model()->columnCount() > 0) {
+        if (arg1 != nullptr) {
+            for (int i {0}; i <= ui->tableView->model()->columnCount(); i++) {
+                for (int j {0}; j <= ui->tableView->model()->rowCount(); j++) {
+                    QModelIndex ind {ui->tableView->model()->index(j, i)};
 
-                if (ind.data().toString() == ui->lineEditSearch->text()) {
-                    ui->tableView->selectRow(j);
-                    break;
+                    if (ind.data().toString() == ui->lineEditSearch->text()) {
+                        ui->tableView->selectRow(j);
+                        break;
+                    }
                 }
             }
         }
@@ -210,4 +227,3 @@ void OTables::updateTable() const {
         break;
     }
 }
-

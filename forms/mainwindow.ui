@@ -132,9 +132,9 @@ background-color: transparent;</string>
    <widget class="QLabel" name="labelPasswd">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>30</x>
       <y>190</y>
-      <width>71</width>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
@@ -238,6 +238,25 @@ border: none;</string>
      </size>
     </property>
    </widget>
+   <widget class="QLabel" name="labelStatus">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>320</y>
+      <width>351</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #c71c1c</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
    <zorder>pushButtonSignIn</zorder>
    <zorder>pushButtonClose</zorder>
    <zorder>pushButtonMinimize</zorder>
@@ -246,6 +265,7 @@ border: none;</string>
    <zorder>labelLogin</zorder>
    <zorder>labelPasswd</zorder>
    <zorder>pushButtonShowPass</zorder>
+   <zorder>labelStatus</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

@@ -11,6 +11,7 @@ ShowTables::ShowTables(QSqlQueryModel* model, QTableView* tableView)
 ShowTables::ShowTables(QTableView* tableView) {
     this->tableView = tableView;
     model = new QSqlQueryModel;
+    tableView->setModel(model);
 }
 
 ShowTables::~ShowTables() {
@@ -23,13 +24,12 @@ void ShowTables::showCompanies() const {
         model->clear();
 
         model->setQuery("SELECT * FROM Companies;", auth);
-        tableView->setModel(model);
 
         model->setHeaderData(0, Qt::Horizontal, "id");
-        model->setHeaderData(1, Qt::Horizontal, "Компания");
-        model->setHeaderData(2, Qt::Horizontal, "Фамилия");
-        model->setHeaderData(3, Qt::Horizontal, "Имя");
-        model->setHeaderData(4, Qt::Horizontal, "Отчество");
+        model->setHeaderData(1, Qt::Horizontal, QObject::tr("Компания"));
+        model->setHeaderData(2, Qt::Horizontal, QObject::tr("Фамилия"));
+        model->setHeaderData(3, Qt::Horizontal, QObject::tr("Имя"));
+        model->setHeaderData(4, Qt::Horizontal, QObject::tr("Отчество"));
 
         tableView->resizeColumnsToContents();
     }
@@ -39,11 +39,10 @@ void ShowTables::showContacts() const {
     if (auth.open()) {
         model->clear();
         model->setQuery("SELECT * FROM Contacts;", auth);
-        tableView->setModel(model);
 
         model->setHeaderData(0, Qt::Horizontal, "id");
-        model->setHeaderData(1, Qt::Horizontal, "Номер телефона");
-        model->setHeaderData(2, Qt::Horizontal, "Почта");
+        model->setHeaderData(1, Qt::Horizontal, QObject::tr("Номер телефона"));
+        model->setHeaderData(2, Qt::Horizontal, QObject::tr("Почта"));
 
         tableView->resizeColumnsToContents();
     }
@@ -55,12 +54,11 @@ void ShowTables::showInfo() const {
         model->setQuery("SELECT idInfoCompany, nameCompany, phoneContacts, emailContacts FROM InfoCompany "
                         "INNER JOIN Companies ON idCompaniesInfo = idCompanies "
                         "INNER JOIN Contacts ON idContactsInfo = idContacts;", auth);
-        tableView->setModel(model);
 
         model->setHeaderData(0, Qt::Horizontal, "id");
-        model->setHeaderData(1, Qt::Horizontal, "Компания");
-        model->setHeaderData(2, Qt::Horizontal, "Номер телефона");
-        model->setHeaderData(3, Qt::Horizontal, "Почта");
+        model->setHeaderData(1, Qt::Horizontal, QObject::tr("Компания"));
+        model->setHeaderData(2, Qt::Horizontal, QObject::tr("Номер телефона"));
+        model->setHeaderData(3, Qt::Horizontal, QObject::tr("Почта"));
 
         tableView->resizeColumnsToContents();
     }
@@ -70,10 +68,9 @@ void ShowTables::showServices() const {
     if (auth.open()) {
         model->clear();
         model->setQuery("SELECT * FROM Services;", auth);
-        tableView->setModel(model);
 
         model->setHeaderData(0, Qt::Horizontal, "id");
-        model->setHeaderData(1, Qt::Horizontal, "Услуга");
+        model->setHeaderData(1, Qt::Horizontal, QObject::tr("Услуга"));
 
         tableView->resizeColumnsToContents();
     }
@@ -88,15 +85,14 @@ void ShowTables::showContracts() const {
                         "INNER JOIN InfoCompany ON idInfoCompanyCon = idInfoCompany "
                         "INNER JOIN Companies ON idCompaniesInfo = idCompanies "
                         "INNER JOIN Contacts ON idContactsInfo = idContacts;", auth);
-        tableView->setModel(model);
 
-        model->setHeaderData(0, Qt::Horizontal, "номер контракта");
-        model->setHeaderData(1, Qt::Horizontal, "Дата заключения контракта");
-        model->setHeaderData(2, Qt::Horizontal, "Дедлайн");
-        model->setHeaderData(3, Qt::Horizontal, "Компания");
-        model->setHeaderData(4, Qt::Horizontal, "Номер телефона");
-        model->setHeaderData(5, Qt::Horizontal, "Почта");
-        model->setHeaderData(6, Qt::Horizontal, "Услуга");
+        model->setHeaderData(0, Qt::Horizontal, QObject::tr("номер контракта"));
+        model->setHeaderData(1, Qt::Horizontal, QObject::tr("Дата заключения контракта"));
+        model->setHeaderData(2, Qt::Horizontal, QObject::tr("Дедлайн"));
+        model->setHeaderData(3, Qt::Horizontal, QObject::tr("Компания"));
+        model->setHeaderData(4, Qt::Horizontal, QObject::tr("Номер телефона"));
+        model->setHeaderData(5, Qt::Horizontal, QObject::tr("Почта"));
+        model->setHeaderData(6, Qt::Horizontal, QObject::tr("Услуга"));
 
         tableView->resizeColumnsToContents();
     }

@@ -49,10 +49,10 @@ void DialogDelTables::pushButtonDel_clicked() {
     success = query.exec();
 
     if (success) {
-        ui->labelStatus->setText("Запись удалена");
+        ui->labelStatus->setText(tr("Запись удалена"));
         ui->labelStatus->setStyleSheet("color: #63c71c");
     } else {
-        ui->labelStatus->setText("Неверный id");
+        ui->labelStatus->setText(tr("Неверный id"));
         ui->labelStatus->setStyleSheet("color: #c71c1c");
     }
 }
